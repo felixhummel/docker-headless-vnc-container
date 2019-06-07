@@ -70,4 +70,8 @@ USER 0
 RUN apt-get update && apt-get --yes install \
         openssh-client \
     && rm -rf /var/lib/apt/lists/*
+ARG UID=1000
+ARG GID=1000
+RUN groupadd --gid $GID vnc
+RUN useradd --uid $UID --gid $GID --base-dir /home --create-home --home-dir /home/vnc vnc
 USER 1000
