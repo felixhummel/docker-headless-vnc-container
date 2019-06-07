@@ -65,3 +65,9 @@ USER 1000
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["--wait"]
+
+USER 0
+RUN apt-get update && apt-get --yes install \
+        openssh-client \
+    && rm -rf /var/lib/apt/lists/*
+USER 1000
